@@ -23,7 +23,7 @@
 </style>
 </head>
 <body>
-<%@ include file = "header.html" %>
+<%@ include file = "header.jsp" %>
 	<div class = "container">
 
   <h1 style = "color: #01B0F1;">Sign up</h1>
@@ -57,6 +57,6 @@
   </form>
 </div>
 
-<%@ include file = "footer.html" %>
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

@@ -30,6 +30,7 @@ public class SignUpServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/html/signUp.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -62,10 +63,10 @@ public class SignUpServlet extends HttpServlet {
 			
 		}
 		
-		// 4 store data
-			// store a list of problems for validation?
+		// 4 store data TODO
+			// store a list of problems for validation
+			// Check email against database. Cannot have same email
 		// 5. forward control
-		//TODO set up XML for forwarding control
 		request.getRequestDispatcher("html/home.jsp").forward(request, response);
 	}
 }

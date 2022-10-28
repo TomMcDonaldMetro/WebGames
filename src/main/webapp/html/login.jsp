@@ -24,7 +24,7 @@
 <title>Log in</title>
 </head>
 <body>
-<%@ include file = "header.html" %>
+<%@ include file = "header.jsp" %>
 	<div class="container">
 <h2 style = "color: #01B0F1;">Sign In </h2>
 
@@ -66,6 +66,6 @@
       </form>
 </div>
 
-<%@ include file = "footer.html" %>
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

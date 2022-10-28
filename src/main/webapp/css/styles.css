@@ -52,3 +52,10 @@
     float: none;
   }
 }
+  table, th, td {
+	  border: 1px solid;
+	  border-collapse: collapse;
+	  table-layout: fixed;
+	  margin-left: auto;
+	  margin-right: auto;
+}

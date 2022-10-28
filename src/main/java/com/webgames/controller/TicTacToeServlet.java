@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.webgames.model.TicTacToe;
+
 /**
  * Servlet implementation class TicTacToeServlet
  */
@@ -21,15 +23,33 @@ public class TicTacToeServlet extends HttpServlet {
      */
     public TicTacToeServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
+    
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1. get data
+    	String locString = request.getParameter("loc");
+		String newGame = request.getParameter("newGame");
+    	// 2. validate
+		if(newGame != null) {
+			request.getSession().setAttribute("game", new TicTacToe());
+		}else if(locString != null && locString.matches("[0-8]")){
+			int loc = Integer.parseInt(locString);
+			((TicTacToe) request.getSession(true).getAttribute("game")).placeMark(loc);
+		}
+    	//  3. do it
+    	// 4. store info
+    	// 5. forward control
+    	
+    	request.getRequestDispatcher("/html/ticTacToe.jsp").forward(request, response);
+		
+	}
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/html/ticTacToe.jsp");
-		dispatcher.forward(request, response);
+		processRequest(request, response);
 	}
 
 	/**

@@ -7,40 +7,52 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Tic-Tac-Toe</title>
+<link rel="stylesheet" href="<c:url value="css/styles.css" />" />
+
 </head>
 <body>
-<%@ include file = "header.html" %>
+<%@ include file = "header.jsp" %>
+<div style="text-align:center">
 <h1>Hello Tic-Tac-Toe!</h1>
-	<form action="<c:url value='TicTacToeServlet'/>" method="get">
+		<c:if test="${game.winner != null }"> 
+			<h1>Congratulations Player ${game.winner }</h1>			
+		</c:if>
+		
+			<form action="<c:url value='tictactoe'/>" method="get">
 		<table>
-			<c:forEach items="${game.grid}"var="square" varStatus="stat">
-				<tr>
+		<tr>
+			<c:forEach items= "${game.board}" var="square" varStatus="stat">
+				
 				<c:choose>
 				
 				<c:when test="${empty square}">
 				
 					<td>
-						<button type="submit" name="loc" class="button_tile"
-							value="${stat.index}"></button>
+						<button <c:if test="${game.winner != null }">value="disabled='disabled'"</c:if> type="submit" name="loc" class="button_tile"
+							value="${stat.index}">${stat.count}</button>
 					</td>
 				
 				</c:when>
 				<c:when test="${square.mark == 'X' }">
-					<td class="X"></td>
+					<td class="X">X</td>
 				
 				</c:when>
 				<c:when test="${square.mark == 'O' }">
-					<td class="O"></td>
+					<td class="O">O</td>
 				</c:when>
 				</c:choose>
 				
 				<c:if test="${stat.count % 3 == 0 }">
 					</tr>
+					<tr>
+					</c:if>
 			</c:forEach>
 		
+		
 		</table>
-	
+		<button type="submit" name="newGame">New Game</button>
 	</form>
-<%@ include file = "footer.html" %>
+	</div>
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

@@ -8,10 +8,10 @@
 <title>Home Page</title>
 </head>
 <body>
-<%@ include file = "header.html" %>
+<%@ include file = "header.jsp" %>
 <h1>Hello World!</h1>
 
 
-<%@ include file = "footer.html" %>
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

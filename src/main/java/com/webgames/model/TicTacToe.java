@@ -11,8 +11,12 @@ public class TicTacToe implements Serializable {
 	static final int NUM_SPACES = 9; // total number of moves possible
 	private int turn;
 
-	enum Mark {
-		X, O
+	public enum Mark {
+		X, O;
+		
+		public String getMark() {
+			return name();
+		}
 	}
 	
 	enum WinLocs {
@@ -47,7 +51,7 @@ public class TicTacToe implements Serializable {
 		for (WinLocs locs : WinLocs.values()) {
 			for (int[] loc : locs.locs) {
 				// if a == b and b == c then a == c and thats 3 in a row for a win
-				if(board[loc[0]] == board[loc[1]] && board[loc[1]] == board[loc[2]]) {
+				if(board[loc[0]] != null && board[loc[0]] == board[loc[1]] && board[loc[1]] == board[loc[2]]) {
 					setWinLoc(loc);
 					return true;
 				}
@@ -79,6 +83,15 @@ public class TicTacToe implements Serializable {
 		}
 		return false;
 	}
+	
+	public Mark getWinner() {
+		if(isWon()) {
+			return getCurrentPlayer();
+		}
+		else {
+			return null;
+		}
+	}
 
 	private Mark getCurrentPlayer() {
 		return turn % 2 == 0 ? Mark.X : Mark.O;
@@ -87,13 +100,9 @@ public class TicTacToe implements Serializable {
 	public Mark[] getBoard() {
 		return this.board;
 	}
-
+	
 	public static void main(String[] args) {
-		TicTacToe game = new TicTacToe();
-		for (WinLocs loc : WinLocs.values()) {
-			for (int[] row : loc.locs) {
-				System.out.println(row[0]);
-			}
-		}
+		TicTacToe s = new TicTacToe();
+		
 	}
 }

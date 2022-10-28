@@ -7,11 +7,11 @@
 <title>Games Menu</title>
 </head>
 <body>
-<%@ include file = "header.html" %>
+<%@ include file = "header.jsp" %>
 <h1>Hello Games Menu!</h1>
 
 <a href="tictactoe">Tic-Tac-Toe</a>
 
-<%@ include file = "footer.html" %>
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

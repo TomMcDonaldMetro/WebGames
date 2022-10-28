@@ -1,6 +1,7 @@
 package com.webgames.controller;
 
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,6 +30,9 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO this code is tester code
+		String ipAddress = LoginServlet.getClientIpAddress(request);
+		System.out.println(ipAddress);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/html/login.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -53,5 +57,21 @@ public class LoginServlet extends HttpServlet {
 		// 5. forward control
 		request.getRequestDispatcher("html/home.jsp").forward(request, response);
 	}
+	
+	// Code borrowed from:
+	// https://stackoverflow.com/questions/16558869/getting-ip-address-of-client
+	public static String getClientIpAddress(HttpServletRequest request) {
+	    String xForwardedForHeader = request.getHeader("X-Forwarded-For");
+	    if (xForwardedForHeader == null) {
+	        return request.getRemoteAddr();
+	    } else {
+	        // As of https://en.wikipedia.org/wiki/X-Forwarded-For
+	        // The general format of the field is: X-Forwarded-For: client, proxy1, proxy2 ...
+	        // we only want the client
+	        return new StringTokenizer(xForwardedForHeader, ",").nextToken().trim();
+	    }
+	}
 
+	
+	
 }

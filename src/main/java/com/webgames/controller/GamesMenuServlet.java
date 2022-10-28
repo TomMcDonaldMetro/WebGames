@@ -21,16 +21,23 @@ public class GamesMenuServlet extends HttpServlet {
      */
     public GamesMenuServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
+    
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	// 1. get data
+    	// 2. validate
+    	// 3. do it
+    	// 4. store info / update
+    	// 5. forward control
+    	request.getRequestDispatcher("/html/gamesMenu.jsp").forward(request, response);
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/html/gamesMenu.jsp");
-		dispatcher.forward(request, response);
+		processRequest(request, response);
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
