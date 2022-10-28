@@ -18,6 +18,7 @@
 			<h1>Congratulations Player ${game.winner }</h1>			
 		</c:if>
 		
+		<!-- Temporary design. Using as a base to test functionality. -->
 			<form action="<c:url value='tictactoe'/>" method="get">
 		<table>
 		<tr>

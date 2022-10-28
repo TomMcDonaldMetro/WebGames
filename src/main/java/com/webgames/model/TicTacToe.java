@@ -36,17 +36,28 @@ public class TicTacToe implements Serializable {
 	}
 
 	private Mark[] board;
-	private boolean[] winLoc;
+	private int[] winLoc; // stores location to highlight in CSS when a win is detected. TODO unimplemented.
 	public TicTacToe() {
 		board = new Mark[NUM_SPACES];
-		winLoc = new boolean[NUM_SPACES];
+		winLoc = new int[NUM_SPACES];
 		turn = 0;
 	}
 
+	/**
+	 * Determines if the game has ended by checking for a winner or the max turns has been reached.
+	 * 
+	 * @return
+	 */
 	public boolean isOver() {
 		return isWon() || turn == NUM_SPACES;
 	}
 
+	/**
+	 * Checks the 2d array WinLocs for possible victory points. If one is discovered
+	 * setWinLoc takes the winning array, and method returns true.
+	 * 
+	 * @return
+	 */
 	private boolean isWon() {
 		for (WinLocs locs : WinLocs.values()) {
 			for (int[] loc : locs.locs) {
@@ -60,16 +71,39 @@ public class TicTacToe implements Serializable {
 		return false;
 	}
 
+	/**
+	 * The winning location is provided when the game detects a winner.
+	 * Winning locations will be highlighted on the view.
+	 * 
+	 * @param loc
+	 */
 	private void setWinLoc(int[] loc) {
-		// TODO Auto-generated method stub
-		// This will be used to highlight the board displaying the location
+		this.winLoc = loc;
+	}
+	
+	public int[] getWinLoc() {
+		return this.winLoc;
 	}
 
+	/**
+	 * Receives loc from the Servlet when user makes a move.
+	 * 
+	 * @param loc
+	 * @return
+	 */
 	public boolean placeMark(int loc) {
 
 		return placeMark(getCurrentPlayer(), loc);
 	}
 
+	/**
+	 * Checks for valid move and if this move doesn't finish game, turn is incremented.
+	 * Current player is determined by the turn, and loc is provided from a user click.
+	 * 
+	 * @param currentPlayer
+	 * @param loc
+	 * @return
+	 */
 	private boolean placeMark(Mark currentPlayer, int loc) {
 		// check if the move is valid
 		if ((board[loc] == null && currentPlayer != null)) {
@@ -84,6 +118,12 @@ public class TicTacToe implements Serializable {
 		return false;
 	}
 	
+	/**
+	 * Returns the currentPlayer as winner.
+	 *  Turn will not update if game ends.
+	 * 
+	 * @return
+	 */
 	public Mark getWinner() {
 		if(isWon()) {
 			return getCurrentPlayer();
@@ -93,16 +133,23 @@ public class TicTacToe implements Serializable {
 		}
 	}
 
+	/**
+	 * Determines current player by turn number.
+	 * X moves first.
+	 * 
+	 * @return
+	 */
 	private Mark getCurrentPlayer() {
 		return turn % 2 == 0 ? Mark.X : Mark.O;
 	}
 
+	/**
+	 * Returns the game board array.
+	 * 
+	 * @return
+	 */
 	public Mark[] getBoard() {
 		return this.board;
 	}
-	
-	public static void main(String[] args) {
-		TicTacToe s = new TicTacToe();
-		
-	}
+
 }

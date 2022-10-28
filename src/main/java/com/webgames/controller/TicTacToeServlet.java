@@ -25,7 +25,14 @@ public class TicTacToeServlet extends HttpServlet {
         super();
     }
 
-    
+    /**
+     * Handles the user responses from the TicTacToe.jsp page.
+     * 
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. get data
     	String locString = request.getParameter("loc");
@@ -34,10 +41,10 @@ public class TicTacToeServlet extends HttpServlet {
 		if(newGame != null) {
 			request.getSession().setAttribute("game", new TicTacToe());
 		}else if(locString != null && locString.matches("[0-8]")){
+	    	//  3. do it
 			int loc = Integer.parseInt(locString);
 			((TicTacToe) request.getSession(true).getAttribute("game")).placeMark(loc);
 		}
-    	//  3. do it
     	// 4. store info
     	// 5. forward control
     	
@@ -56,7 +63,6 @@ public class TicTacToeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
