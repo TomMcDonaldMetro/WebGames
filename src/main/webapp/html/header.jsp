@@ -62,9 +62,9 @@ body {
 </head>
 <body>
 	<div class="header">
-	  <a href="#default" class="logo">Web Games</a>
+	  <a href="home" class="logo">Web Games</a>
 	  <div class="header-right">
-	    <a class="active" href="home.jsp">Home</a>
+	    <a class="active" href="home">Home</a>
 	    <a href="gamesmenu">Games</a>
 	    <a href="#about">About</a>
 	    <a href="login">Sign In</a>

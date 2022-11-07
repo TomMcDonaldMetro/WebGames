@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+import com.webgames.model.Reversi;
 import com.webgames.model.TicTacToe;
+
 
 
 @WebListener
@@ -18,6 +20,7 @@ public class SessionListener implements HttpSessionListener{
 	// TODO not set up correctly.
 	public void sessionCreated(HttpSessionEvent se) {
 		se.getSession().setAttribute("game", new TicTacToe());
+		se.getSession().setAttribute("reversi", new Reversi());
 		Logger.getAnonymousLogger().info("Session created");
 	}
 

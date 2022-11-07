@@ -10,7 +10,8 @@
 <%@ include file = "header.jsp" %>
 <h1>Hello Games Menu!</h1>
 
-<a href="tictactoe">Tic-Tac-Toe</a>
+<li><a href="tictactoe">Tic-Tac-Toe</a></li>
+<li><a href="reversi">Reversi</a></li>
 
 <%@ include file = "footer.jsp" %>
 </body>
