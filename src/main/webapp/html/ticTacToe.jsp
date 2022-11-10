@@ -13,47 +13,26 @@
 <body>
 <%@ include file = "header.jsp" %>
 <div style="text-align:center">
-<h1>Hello Tic-Tac-Toe!</h1>
-		<c:if test="${game.winner != null }"> 
+<c:if test="${game.winner != null }"> 
 			<h1>Congratulations Player ${game.winner }</h1>			
 		</c:if>
+<form action="<c:url value='tictactoe'/>" method="get">
+	<div class= "game-board">
+		<c:forEach items="${game.board}" var="square" varStatus="stat">
+			<c:choose>
+			<c:when test="${empty square}"> <div class="empty"><button <c:if test="${game.winner != null }">value="disabled='disabled'"</c:if> class="ttt-space" type="submit" name="loc" value="${stat.index}"></button></div></c:when>
+			<c:when test="${square.mark == 'X' }"><div class="ttt-img" style="background-image: url('images/x.png')"></div></c:when>
+			<c:when test="${square.mark == 'O' }"><div class="ttt-img" style="background-image: url('images/o.png')"></div></c:when>
+			</c:choose>
+			
 		
-		<!-- Temporary design. Using as a base to test functionality. -->
-			<form action="<c:url value='tictactoe'/>" method="get">
-		<table>
-		<tr>
-			<c:forEach items= "${game.board}" var="square" varStatus="stat">
-				
-				<c:choose>
-				
-				<c:when test="${empty square}">
-				
-					<td>
-						<button <c:if test="${game.winner != null }">value="disabled='disabled'"</c:if> type="submit" name="loc" class="button_tile"
-							value="${stat.index}">${stat.count}</button>
-					</td>
-				
-				</c:when>
-				<c:when test="${square.mark == 'X' }">
-					<td class="X">X</td>
-				
-				</c:when>
-				<c:when test="${square.mark == 'O' }">
-					<td class="O">O</td>
-				</c:when>
-				</c:choose>
-				
-				<c:if test="${stat.count % 3 == 0 }">
-					</tr>
-					<tr>
-					</c:if>
-			</c:forEach>
-		
-		
-		</table>
-		<button type="submit" name="newGame">New Game</button>
-	</form>
+		</c:forEach>
+	<button type="submit" name="newGame">New Game</button>
 	</div>
+		
+	
+	</form>
+		</div>
 <%@ include file = "footer.jsp" %>
 </body>
 </html>

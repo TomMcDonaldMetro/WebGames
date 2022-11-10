@@ -1,4 +1,28 @@
 @charset "ISO-8859-1";
+
+
+.game-board{ 
+ margin: 50px;
+ padding: 50px;
+ display: grid;
+ grid-template-columns: 120px 120px 120px; 
+ grid-template-rows: 120px 120px 120px 20px;
+ justify-content: center;
+}
+.ttt-img {
+	background-color: #d9d9d9;
+	background-size: cover;
+	background-position: center;
+ 	border: 4px solid black; 
+}
+
+.ttt-space{
+height: 120px;
+width: 120px;
+background-color: #d9d9d9;
+ border: 4px solid black; 
+}
+
 /* Style the header with a grey background and some padding */
 .header {
   overflow: hidden;
