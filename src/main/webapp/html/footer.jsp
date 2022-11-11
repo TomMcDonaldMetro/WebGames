@@ -13,5 +13,5 @@
 
 <div class="footer">
   <p>Copyright 1969 - 2022</p>
-  <a href="home.jsp">WebGames4Lyf</a>
+  <a href="home" style="color: white">WebGames4Lyf</a>
 </div>
